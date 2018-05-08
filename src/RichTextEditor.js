@@ -79,6 +79,8 @@ export default class RichTextEditor extends Component {
   componentDidMount() {
     const {autoFocus} = this.props;
 
+    this.editor = React.createRef();
+
     if (!autoFocus) {
       return;
     }
@@ -147,7 +149,7 @@ export default class RichTextEditor extends Component {
             onTab={this._onTab}
             onChange={this._onChange}
             placeholder={placeholder}
-            ref="editor"
+            ref={this.editor}
             spellCheck={true}
             readOnly={readOnly}
           />
@@ -330,7 +332,7 @@ export default class RichTextEditor extends Component {
   }
 
   _focus() {
-    this.refs.editor.focus();
+    this.editor.current.focus();
   }
 }
 
